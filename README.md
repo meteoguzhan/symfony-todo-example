@@ -14,11 +14,11 @@ git clone https://github.com/meteoguzhan/symfony-todo-example.git
 ```
 You need to copy env file and rename it as .env
 ```bash
-cp .env.example .env
+cd symfony-todo-example && cp .env.example .env
 ```
 After clone project, you need to install packages. (Make sure your system exists composer)
 ```bash
-cd symfony-todo-example && composer install
+composer install
 ```
 Open .env file, Give your updated details of MySQL connection string.
 <pre>
