@@ -12,8 +12,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HomeControllerTest extends KernelTestCase
 {
-    private $taskRepository;
-    private $developerRepository;
+    private TaskRepository $taskRepository;
+    private DeveloperRepository $developerRepository;
 
     protected function setUp(): void
     {
@@ -57,11 +57,9 @@ class HomeControllerTest extends KernelTestCase
             ->willReturn([$task1, $task2]);
 
         $reflectionDeveloperRepository = new ReflectionProperty(HomeController::class, 'developerRepository');
-        $reflectionDeveloperRepository->setAccessible(true);
         $reflectionDeveloperRepository->setValue($controller, $this->developerRepository);
 
         $reflectionTaskRepository = new ReflectionProperty(HomeController::class, 'taskRepository');
-        $reflectionTaskRepository->setAccessible(true);
         $reflectionTaskRepository->setValue($controller, $this->taskRepository);
 
         $response = $controller->index();
@@ -71,15 +69,17 @@ class HomeControllerTest extends KernelTestCase
 
     public function testExecuteWithError(): void
     {
-        $controller = new HomeController($this->taskRepository, $this->developerRepository);
+        $controller = self::$container->get(HomeController::class);
 
         $task1 = new Task();
         $task1->setTaskName('Task 1');
         $task1->setDifficulty(1);
+        $task1->setDuration(1);
 
         $task2 = new Task();
         $task2->setTaskName('Task 2');
         $task2->setDifficulty(2);
+        $task1->setDuration(2);
 
         $this->taskRepository->expects($this->once())
             ->method('getAllTasks')
@@ -90,11 +90,9 @@ class HomeControllerTest extends KernelTestCase
             ->willReturn([]);
 
         $reflectionTaskRepository = new ReflectionProperty(HomeController::class, 'taskRepository');
-        $reflectionTaskRepository->setAccessible(true);
         $reflectionTaskRepository->setValue($controller, $this->taskRepository);
 
         $reflectionDeveloperRepository = new ReflectionProperty(HomeController::class, 'developerRepository');
-        $reflectionDeveloperRepository->setAccessible(true);
         $reflectionDeveloperRepository->setValue($controller, $this->developerRepository);
 
         $this->expectException(RuntimeException::class);

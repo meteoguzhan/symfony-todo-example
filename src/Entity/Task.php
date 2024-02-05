@@ -18,17 +18,17 @@ class Task
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $taskName;
+    private ?string $taskName;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $difficulty;
+    private ?int $difficulty;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $duration;
+    private ?int $duration;
 
     public function getId(): ?int
     {

@@ -6,7 +6,7 @@ use RuntimeException;
 
 class TaskAssignerProvider
 {
-    private $developers;
+    private array $developers;
 
     public function __construct(array $developers)
     {

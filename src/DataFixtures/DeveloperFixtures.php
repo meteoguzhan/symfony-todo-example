@@ -8,7 +8,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class DeveloperFixtures extends Fixture
 {
-    private $developerRepository;
+    private DeveloperRepository $developerRepository;
     public function __construct(DeveloperRepository $developerRepository)
     {
         $this->developerRepository = $developerRepository;

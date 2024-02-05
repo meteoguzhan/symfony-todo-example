@@ -14,8 +14,8 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 class FetchAndSaveTasksCommand extends Command
 {
     protected static $defaultName = 'app:fetch-and-save-tasks';
-    private $taskProvider;
-    private $taskRepository;
+    private TaskMappingProvider $taskProvider;
+    private TaskRepository $taskRepository;
 
     public function __construct(TaskMappingProvider $taskProvider, TaskRepository $taskRepository)
     {

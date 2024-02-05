@@ -11,8 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HomeController extends AbstractController
 {
-    private $taskRepository;
-    private $developerRepository;
+    private TaskRepository $taskRepository;
+    private DeveloperRepository $developerRepository;
 
     public function __construct(TaskRepository $taskRepository, DeveloperRepository $developerRepository)
     {

@@ -8,7 +8,7 @@ use RuntimeException;
 
 class TaskMappingStrategyFactory
 {
-    private $strategies;
+    private array $strategies;
 
     public function __construct()
     {

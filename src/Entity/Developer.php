@@ -18,17 +18,17 @@ class Developer
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $developerName;
+    private ?string $developerName;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $duration;
+    private ?int $duration;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $difficulty;
+    private ?int $difficulty;
 
     public function getId(): ?int
     {

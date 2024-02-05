@@ -11,8 +11,8 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 class FetchAndSaveTasksCommandTest extends KernelTestCase
 {
-    private $taskProvider;
-    private $taskRepository;
+    private TaskMappingProvider $taskProvider;
+    private TaskRepository $taskRepository;
 
     protected function setUp(): void
     {
@@ -22,6 +22,7 @@ class FetchAndSaveTasksCommandTest extends KernelTestCase
         $this->taskProvider = $this->createMock(TaskMappingProvider::class);
         $this->taskRepository = $this->createMock(TaskRepository::class);
     }
+
     public function testExecuteWithSuccess(): void
     {
         $tasks = [

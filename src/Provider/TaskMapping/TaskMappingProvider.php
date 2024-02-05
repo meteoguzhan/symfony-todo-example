@@ -11,8 +11,8 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 class TaskMappingProvider
 {
-    private $mappingStrategy;
-    private $apiService;
+    private TaskMappingStrategyInterface $mappingStrategy;
+    private ApiService $apiService;
 
     public function __construct(TaskMappingStrategyInterface $mappingStrategy, ApiService $apiService)
     {
