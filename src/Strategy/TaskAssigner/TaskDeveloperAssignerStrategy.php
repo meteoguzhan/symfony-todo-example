@@ -1,29 +1,26 @@
 <?php
 namespace App\Strategy\TaskAssigner;
 
+use App\Entity\Developer;
 use App\Interfaces\TaskAssigner\TaskAssignerStrategyInterface;
 
 class TaskDeveloperAssignerStrategy implements TaskAssignerStrategyInterface
 {
-    private $developerId;
-    private $developerName;
-    private $difficulty;
+    private Developer $developer;
 
-    public function __construct($developerId, $developerName, $difficulty)
+    public function __construct($developer)
     {
-        $this->developerId = $developerId;
-        $this->developerName = $developerName;
-        $this->difficulty = $difficulty;
+        $this->developer = $developer;
     }
 
     public function assignTask($task, $remainingHours): ?array
     {
-        if ($task["difficulty"] <= $this->difficulty && $task["duration"] <= $remainingHours) {
+        if ($task->getDifficulty() <= $this->developer->getDifficulty() && $task->getDuration() <= $remainingHours) {
             return [
-                "developerId" => $this->developerId,
-                "developerName" => $this->developerName,
-                "taskName" => $task["taskName"],
-                "duration" => $task["duration"]
+                "developerId" => $this->developer->getId(),
+                "developerName" => $this->developer->getDeveloperName(),
+                "taskName" => $task->getTaskName(),
+                "duration" => $task->getDuration()
             ];
         } else {
             return null;

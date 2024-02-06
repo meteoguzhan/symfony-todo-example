@@ -1,6 +1,5 @@
 <?php
 namespace App\Provider\TaskAssigner;
-
 use App\Strategy\TaskAssigner\TaskDeveloperAssignerStrategy;
 use RuntimeException;
 
@@ -19,8 +18,8 @@ class TaskAssignerProvider
         foreach ($tasks as $task) {
             $assigned = false;
             foreach ($this->developers as $developer) {
-                $taskDeveloperAssignerStrategy = new TaskDeveloperAssignerStrategy($developer->getId(), $developer->getDeveloperName(), $developer->getDifficulty());
-                $result = $taskDeveloperAssignerStrategy->assignTask($task->toArray(), $weeklyHours);
+                $taskDeveloperAssignerStrategy = new TaskDeveloperAssignerStrategy($developer);
+                $result = $taskDeveloperAssignerStrategy->assignTask($task, $weeklyHours);
                 if ($result !== null) {
                     $assignments[$developer->getId()][] = $result;
                     $assigned = true;
@@ -53,6 +52,5 @@ class TaskAssignerProvider
 
         return $totalWeeksPerDeveloper;
     }
-
 }
 
